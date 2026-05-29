@@ -6,16 +6,12 @@
     <div class="panel-left">
       <div class="left-content">
         <div class="seal">
-          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="22" fill="none" stroke="var(--gold)" stroke-width=".8"/>
-            <circle cx="24" cy="24" r="16" fill="none" stroke="var(--gold)" stroke-width=".4" stroke-dasharray="2 2" opacity=".4"/>
-            <text x="24" y="22" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="700" fill="var(--gold-soft)" letter-spacing="-0.5">K</text>
-            <text x="24" y="31" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="4.5" fill="var(--text3)" letter-spacing="2">PRIVATE</text>
-          </svg>
+          <KoshaTreasuryLogo :size="64" style="color: var(--gold)" />
         </div>
 
         <h1 class="brand-name">Kosha</h1>
         <p class="brand-tagline">Private Wealth Ledger</p>
+        <p class="brand-sanskrit">कोश &thinsp;·&thinsp; Sanskrit for treasury</p>
 
         <div class="divider-h"></div>
 
@@ -115,6 +111,8 @@
 import { ref, onUnmounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
+import KoshaLogo from '../components/KoshaLogo.vue'
+import KoshaTreasuryLogo from '../components/KoshaTreasuryLogo.vue'
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -203,8 +201,8 @@ onUnmounted(() => clearInterval(countdownTimer))
 }
 
 .seal {
-  margin-bottom: 28px;
-  filter: drop-shadow(0 0 16px rgba(196,154,60,.15));
+  margin-bottom: 24px;
+  filter: drop-shadow(0 0 20px rgba(122,88,48,.18));
 }
 
 .brand-name {
@@ -231,6 +229,11 @@ onUnmounted(() => clearInterval(countdownTimer))
   letter-spacing: -.02em; line-height: 1;
 }
 .stat-label { font-size: 11px; color: var(--text3); letter-spacing: .06em; text-transform: uppercase; }
+
+.brand-sanskrit {
+  font-size: 12px; color: var(--gold-muted); letter-spacing: .08em;
+  margin-bottom: 28px; font-style: italic;
+}
 
 .left-foot {
   font-size: 11px; color: var(--text3); line-height: 1.7;

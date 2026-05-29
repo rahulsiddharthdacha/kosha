@@ -11,9 +11,12 @@
           </svg>
         </button>
 
-        <div class="brand-lockup">
-          <div class="brand-mark">K</div>
-          <span class="brand">Kosha</span>
+        <div class="brand-lockup" title="Kosha · कोश · Sanskrit for treasury">
+          <KoshaLogo :size="28" class="brand-mark-svg" />
+          <div class="brand-text">
+            <span class="brand">Kosha</span>
+            <span class="brand-devanagari">कोश</span>
+          </div>
         </div>
       </div>
 
@@ -148,6 +151,7 @@
 
         <div class="sidebar-foot">
           <span class="foot-text mono">v2.4.1 · PROD</span>
+          <span class="foot-sanskrit" title="Kosha · कोश · Sanskrit for treasury">कोश</span>
         </div>
       </nav>
 
@@ -169,6 +173,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useWealthStore } from '../stores/wealth'
 import ToastStack from './ToastStack.vue'
+import KoshaLogo from './KoshaLogo.vue'
 
 const auth   = useAuthStore()
 const wealth = useWealthStore()
@@ -246,12 +251,19 @@ onUnmounted(() => {
 }
 .collapse-btn:hover { border-color: var(--border2); color: var(--text2); background: var(--nav-hover); }
 
-.brand-lockup { display: flex; align-items: center; gap: 8px; }
-.brand-mark {
-  width: 26px; height: 26px; border-radius: var(--r);
-  background: var(--gold); display: grid; place-items: center;
-  font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 700; color: #0A0800;
-  flex-shrink: 0; letter-spacing: -.02em;
+.brand-lockup { display: flex; align-items: center; gap: 8px; cursor: default; }
+.brand-text { display: flex; flex-direction: column; gap: 0px; line-height: 1; }
+.brand-devanagari {
+  font-size: 8px; color: var(--text3); letter-spacing: .04em;
+  font-family: 'Inter', system-ui, sans-serif; font-weight: 400;
+  opacity: 0.7; margin-top: 1px;
+  transition: opacity .2s;
+}
+.brand-lockup:hover .brand-devanagari { opacity: 1; }
+.brand-mark-svg {
+  flex-shrink: 0;
+  color: var(--gold);
+  display: block;
 }
 .brand {
   font-family: 'Inter', system-ui, sans-serif; font-weight: 600;
@@ -429,7 +441,18 @@ kbd {
   transition: opacity .18s ease, max-width .22s ease;
   max-width: 180px;
 }
+.foot-sanskrit {
+  font-size: 10px; color: var(--text3); opacity: 0.5;
+  margin-top: 4px; display: block; cursor: default;
+  font-family: 'Inter', system-ui, sans-serif;
+  white-space: nowrap; overflow: hidden;
+  transition: opacity .18s ease, max-width .22s ease;
+  max-width: 180px;
+  letter-spacing: .04em;
+}
+.foot-sanskrit:hover { opacity: 0.85; }
 .sidebar.collapsed .foot-text { opacity: 0; max-width: 0; }
+.sidebar.collapsed .foot-sanskrit { opacity: 0; max-width: 0; }
 
 /* ── Main ── */
 .main { flex: 1; overflow-y: auto; padding: 22px 26px; background: transparent; }
